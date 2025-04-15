@@ -771,6 +771,8 @@
                         ${
                           plan.status === "pending"
                             ? `
+                            <button class="action-button approve" data-id="${plan.id}">Approve</button>
+                            <button class="action-button reject" data-id="${plan.id}">Reject</button>
                         `
                             : ""
                         }
@@ -844,21 +846,23 @@
         if (plan.status === "pending" || !plan.status) {
           modalFooter.innerHTML = `
                     <button class="button" id="modal-close-btn">Close</button>
+                    <button class="button approve" id="modal-approve-btn">Approve</button>
+                    <button class="button reject" style="background-color: var(--danger);" id="modal-reject-btn">Reject</button>
                 `;
 
-          //   document
-          //     .getElementById("modal-approve-btn")
-          //     .addEventListener("click", () => {
-          //       updateFlightPlanStatus(id, "approved");
-          //       modal.style.display = "none";
-          //     });
+          document
+            .getElementById("modal-approve-btn")
+            .addEventListener("click", () => {
+              updateFlightPlanStatus(id, "approved");
+              modal.style.display = "none";
+            });
 
-          //   document
-          //     .getElementById("modal-reject-btn")
-          //     .addEventListener("click", () => {
-          //       updateFlightPlanStatus(id, "rejected");
-          //       modal.style.display = "none";
-          //     });
+          document
+            .getElementById("modal-reject-btn")
+            .addEventListener("click", () => {
+              updateFlightPlanStatus(id, "rejected");
+              modal.style.display = "none";
+            });
         } else {
           modalFooter.innerHTML = `
                     <button class="button" id="modal-close-btn">Close</button>
